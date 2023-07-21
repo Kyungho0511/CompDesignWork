@@ -1,6 +1,9 @@
-import http from 'http';
+// import http from 'http'
+const http = require('http')
+const fs = require('fs').promises;
 
 const host = 'localhost';
+
 const port = 8000;
 
 const data = [{
@@ -9,8 +12,17 @@ const data = [{
 }];
 
 const requestListener = (req, res) => {
-  res.writeHead(200); // sets the HTTP status code of the response
-  res.end(JSON.stringify(data)); // drop data you want to render to the server
+  fs.readFile(__dirname + '/index.html')
+  .then(content => {
+    res.setHeader('Content-type', 'text/html');
+    res.writeHead(200); // sets the HTTP status code of the response
+    res.end(content); // drop data you want to render to the server
+  })
+  .catch(err => {
+    res.writeHead(500)
+    res.end(err)
+    return
+  })
 }
 
 const server = http.createServer(requestListener);
