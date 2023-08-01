@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Cube VR Starter</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <img id="city" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
+            <a-asset-item 
+                id="smartphone" 
+                src="./model/smartphone/scene.gltf">
+            </a-asset-item>
+            <a-asset-item 
+                id="skycastle" 
+                src="./model/mountain_landscape/scene.gltf">
+            </a-asset-item>
+        </a-assets>
+
+        <a-sky src="#city"></a-sky>
+
+        <!-- loading models -->
+        <a-entity 
+            gltf-model="#smartphone"
+            position="-1 2.5 -5"
+            scale="2 2 2"
+            rotation="0 0 0"
+            class="smartphone">
+        </a-entity>
+        <a-entity 
+            gltf-model="#skycastle"
+            position="-1 0 -5"
+            scale="0.3 0.3 0.3">
+        </a-entity>
+
+        <!-- objects -->
+        <a-sphere 
+            color="yellow" 
+            radius="5" 
+            position="0 2 -15" 
+            scale="0.25 0.8 0.25"
+            animation="property: position; to: 0 20 -15; dur: 3500; easing: easeInQuad; loop: true">
+        </a-sphere>
+        <a-sphere 
+            color="yellow" 
+            radius="5" 
+            position="6 1 -15" 
+            scale="0.25 0.6 0.25"
+            animation="property: position; to: 6 20 -15; dur: 2000; easing: easeInQuad; loop: true">
+        </a-sphere>
+        <a-sphere 
+            color="yellow" 
+            radius="5" 
+            position="-6 1 -15" 
+            scale="0.25 0.5 0.25"
+            animation="property: position; to: -6 20 -15; dur: 3000; easing: easeInQuad; loop: true">
+        </a-sphere>
+        
+        <!-- lighting -->
+        <a-light 
+            type="directional" 
+            color="#FFF" 
+            intensity="1.5" 
+            position="-5 10 2"
+            animation="property: position; to: -10 10 -50; dur: 3000; easing: easeInQuad; loop: true">
+        </a-light>
+
+        <a-light type="ambient" color="#FFF"></a-light>
+        
+    </a-scene>
+    <script src="main.js"></script>
+</body>
+</html>
